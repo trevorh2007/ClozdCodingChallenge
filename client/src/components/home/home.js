@@ -1,10 +1,10 @@
 import React from 'react';
 import UserList from '../user-list/userlist'
 
-const Home = () => {
+const Home = (props) => {
     return(
         <div className="container">
-            <UserList />
+            <UserList data= {props.data} setUserData={props.setUserData}/>
         </div>
     )
 }

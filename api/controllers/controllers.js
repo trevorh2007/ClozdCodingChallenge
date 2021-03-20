@@ -1,7 +1,6 @@
 const axios = require('axios').default
 
 const getUsers = (req, res) => {
-    console.log(req.query)
     try {
         axios.get('https://randomuser.me/api', {
             params: {

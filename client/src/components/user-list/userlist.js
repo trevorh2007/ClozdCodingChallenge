@@ -1,16 +1,14 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios'
 import './userlist.css'
-import {A} from 'hookrouter'
+import {A, setLinkProps} from 'hookrouter'
 import {Row, Col} from 'react-bootstrap'
 
-const UserList = () => {
-    const [data, setData] = useState()
+const UserList = (props) => {
     const [dataPage, setDataPage] = useState(1)
     const [isFetching, setIsFetching] = useState(false);
 
     useEffect(() => {
-        console.log(dataPage)
         const fetchUsers = async () => {
             const response = await axios.get('/api/v1/users', {
                 params: {
@@ -19,7 +17,7 @@ const UserList = () => {
                     seed: 'abc'
                 }
             })
-            setData(response.data)
+            props.setUserData(response.data)
             setDataPage(dataPage => dataPage + 1)
         }
         fetchUsers()
@@ -49,15 +47,15 @@ const UserList = () => {
                 seed: 'abc'
             }
         })
-        setData(data => [...data, ...response.data])
+        props.setUserData(data => [...data, ...response.data])
         setIsFetching(false);
     }
   
     return (
         <>
         <ul className="list-group mb-2">
-            {data ? data.map((user, index) => (
-                <A href={`/user/${index}`} key={index} user={user}>
+            {props.data ? props.data.map((user, index) => (
+                <A {...setLinkProps({href: `/user/${index}`, data: user })} key={index}>
                     <li className="list-group-item" key={index}>
                         <Row>
                             <Col md="auto">
