@@ -31,6 +31,8 @@ const About = () => {
                 <ul>
                     <li>Add history to 'hookrouter' and infinite scroll scroll position for better UX when using back buttons from user details page </li>
                     <li>Unit tests, front/back end</li>
+                    <li>Currently not using react-router easily loses data on refresh for user/:id, data is transferred from home page to the user details page. Find a fix for this using hookrouter and either it's "history" or use localstorage for refresh data.</li>
+                    <li>The route for user/:id doesn't take in account of the 0 index position, quick fix wouldn't take long (example: route 'user/1' is actually user 2)</li>
                 </ul>
             </p>
         </div>
