@@ -1,0 +1,9 @@
+.list-group a {
+    white-space: pre-line;
+    color: black;
+}
+
+.list-group a:hover {
+    text-decoration: none;
+    color: blue;
+}

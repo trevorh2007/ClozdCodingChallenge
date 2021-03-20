@@ -1,14 +1,16 @@
-import React, { useState, useEffect } from 'react'
+import React from 'react'
+import {useRoutes} from 'hookrouter'
 import './App.css'
-import Home from './components/home/home'
 import NavigationBar from './components/nav-bar/navbar'
+import NoPageFound from './components/no-page-found/nopagefound'
+import routes from './router'
 
 const App = () => {
-
+  const routeResult = useRoutes(routes)
   return (
     <div className="App">
       <NavigationBar />
-      <Home />
+      { routeResult || <NoPageFound /> }
     </div>
   )
 }

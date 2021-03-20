@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios'
+import './userlist.css'
 
 const UserList = () => {
     const [data, setData] = useState()
@@ -17,12 +18,15 @@ const UserList = () => {
         <>
         <ul className="list-group mb-2">
             {data ? data.map(user => (
-                <li key={user.id.value} className="list-group-item">
-                    <a href={  }>
-                        Name: {user.name.first + ' ' + user.name.last}{" "}
-                        Email: {user.email}
-                    </a>
-                </li>
+                <a href={"/"}>
+                    <li key={user.id.value} className="list-group-item">
+                        {
+                        `Name: ${user.name.first + ' ' + user.name.last}
+                        Email: ${user.email}
+                        City/Country: ${user.location.city}, ${user.location.country} `
+                    }
+                    </li>
+                </a>
             )) : ''}
         </ul>
         </>
