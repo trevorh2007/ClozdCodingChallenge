@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios'
 import './userlist.css'
 import {A} from 'hookrouter'
+import {Row, Col} from 'react-bootstrap'
 
 const UserList = () => {
     const [data, setData] = useState()
@@ -41,7 +42,6 @@ const UserList = () => {
 
     async function fetchMoreUsers() {
         setDataPage(dataPage => dataPage + 1)
-        console.log('fetch more', dataPage)
         const response = await axios.get(`/api/v1/users`, {
             params: {
                 page: dataPage,
@@ -50,7 +50,6 @@ const UserList = () => {
             }
         })
         setData(data => [...data, ...response.data])
-        console.log(data)
         setIsFetching(false);
     }
   
@@ -60,15 +59,22 @@ const UserList = () => {
             {data ? data.map((user, index) => (
                 <A href={`/user/${index}`} key={index} user={user}>
                     <li className="list-group-item" key={index}>
-                        {
-                        `Name: ${user.name.first + ' ' + user.name.last}
-                        Email: ${user.email}
-                        City/Country: ${user.location.city}, ${user.location.country} `
-                    }
+                        <Row>
+                            <Col md="auto">
+                                {index + 1}.
+                            </Col>
+                            <Col md="auto">
+                                {
+                                    `Name: ${user.name.first + ' ' + user.name.last}
+                                    Email: ${user.email}
+                                    City/Country: ${user.location.city}, ${user.location.country} `
+                                }
+                            </Col>
+                        </Row>
                     </li>
                 </A>
             )) : ''}
-            {isFetching && 'Fetching more list items...'}
+            {isFetching && 'Fetching more users...'}
         </ul>
         </>
     );
