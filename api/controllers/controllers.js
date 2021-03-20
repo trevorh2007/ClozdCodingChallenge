@@ -1,8 +1,15 @@
 const axios = require('axios').default
 
 const getUsers = (req, res) => {
+    console.log(req.query)
     try {
-        axios.get("https://randomuser.me/api/?page=1&results=50&seed=abc")
+        axios.get('https://randomuser.me/api', {
+            params: {
+                page: req.query.page,
+                results: req.query.results,
+                seed: req.query.seed
+            }
+        })
             .then(response => {
                 res.status(200).send(response.data.results)
             })

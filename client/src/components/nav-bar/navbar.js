@@ -4,7 +4,7 @@ import './navbar.css'
 
 const NavigationBar = () => {
     return(
-        <Navbar bg="dark" variant="dark" expand="lg" className="mb-3">
+        <Navbar bg="dark" variant="dark" expand="lg" className="mb-3" sticky="top">
         <Navbar.Brand href="/">Clozd Coding Challenge</Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
